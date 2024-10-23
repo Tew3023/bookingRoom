@@ -27,6 +27,9 @@ export default function Guest({ toggle }) {
   };
 
   const confirmData = () => {
+    if(!adults || !children || !room){
+      return
+    }
     dispatch(setAdult(adults));       
     dispatch(setChildren(children));  
     dispatch(setRoom(room));      

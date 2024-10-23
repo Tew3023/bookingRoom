@@ -5,6 +5,10 @@ const initialState = {
     adult: 0,
     children: 0,
     room:0
+ },
+ date: {
+  checkin : null,
+  checkout : null
  }
 }
 
@@ -20,9 +24,15 @@ export const counterSlice = createSlice({
     }),
     setRoom : ((state,action)=>{
         state.guest.room = action.payload
+    }),
+    setCheckfirst : ((state,action) => {
+      state.date.checkin = action.payload
+    }),
+    setChecksec : ((state,action) => {
+      state.date.checkout = action.payload
     })
-  },
+    },
 });
 
-export const { setAdult , setChildren , setRoom } = counterSlice.actions;
+export const { setAdult , setChildren , setRoom ,setCheckfirst,setChecksec } = counterSlice.actions;
 export default counterSlice.reducer;
