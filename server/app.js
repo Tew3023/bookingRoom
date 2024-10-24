@@ -4,6 +4,7 @@ const app = express();
 const cors = require("cors");
 const userRoute = require("./routes/user");
 const cookiesRoute = require("./routes/cookies")
+const roomRoute = require("./routes/room")
 
 app.use(
   cors({
@@ -18,6 +19,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/user", userRoute); 
 // get data from cookies
 app.use("/cookies",cookiesRoute)
+// get room data
+app.use("/room",roomRoute)
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {

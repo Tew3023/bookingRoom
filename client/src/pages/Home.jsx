@@ -1,4 +1,5 @@
 import Bg from "../components/Bg";
+import { Link } from "react-router-dom";
 export default function Home() {
 
   return (
@@ -19,9 +20,11 @@ export default function Home() {
             fishing village, now sustainably renewed and elevated with the
             tastes of the 21st century.
           </p>
-          <button className="bg-black text-white px-8 py-3 text-md uppercase">
-            check rates
+          <Link to='/booking'>
+          <button className="bg-black text-white px-8 py-3 text-md uppercase my-3">
+            Book now
           </button>
+          </Link>
         </section>
       </div>
       <section className="my-14 space-y-5 ">
