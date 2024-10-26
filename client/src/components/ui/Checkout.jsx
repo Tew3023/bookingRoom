@@ -1,12 +1,55 @@
-import { CalendarDays } from "lucide-react"
-export default function Checkout(){
-    return (
-        <button className="w-full h-full p-2 flex gap-5 items-center">
-      <CalendarDays className="w-5 h-5" />
-      <div className="flex flex-col text-start">
-        <p className="text-sm ">Check - Out</p>
+import { CalendarDays } from "lucide-react";
+import { useState } from "react";
+import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
+import dayjs from "dayjs";
+export default function Checkout() {
+  const [popup, setPopup] = useState(false);
+  const [calendar, setCalendar] = useState(null);
 
-      </div>
-    </button>
-    )
+  const handlePopup = () => {
+    setPopup(!popup);
+  };
+
+  const formattedDate = calendar
+    ? dayjs(calendar).format("MM/DD/YYYY")
+    : "Select Date";
+  return (
+    <>
+      {popup && (
+        <div className="relative">
+          <div className="absolute top-12 bg-white shadow-lg p-2 rounded-md z-10">
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer components={["DateCalendar"]}>
+                <DemoItem label="Check-out-date">
+                  <DateCalendar
+                    value={calendar}
+                    onChange={(newValue) => {
+                      setCalendar(newValue);
+                      setPopup(false);
+                    }}
+                  />
+                </DemoItem>
+              </DemoContainer>
+            </LocalizationProvider>
+            <div className="flex justify-center mt-2">
+              <button className="text-center bg-black text-white">Confirm</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <button
+        onClick={handlePopup}
+        className="w-full h-full p-2 flex gap-5 items-center"
+      >
+        <CalendarDays className="w-5 h-5" />
+        <div className="flex flex-col text-start">
+          <p className="text-sm ">Check - Out</p>
+        </div>
+      </button>
+    </>
+  );
 }

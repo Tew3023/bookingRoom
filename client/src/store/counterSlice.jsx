@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
  guest: {
-    adult: 0,
+    adult: 1,
     children: 0,
     room:0
  },

@@ -1,5 +1,4 @@
 import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
 import { X } from "lucide-react";
@@ -7,12 +6,11 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setAdult, setChildren, setRoom } from '../store/counterSlice'; 
 
-export default function Guest({ toggle }) {
+export default function Guest2({ toggle }) {
   const dispatch = useDispatch();
-  const adult = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const adult = [0,1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const [adults, setAdults] = useState(1);
-  const [children, setChild] = useState(1); 
-  const [room, setRooms] = useState(1);    
+  const [children, setChild] = useState(1);   
 
   const adultsChange = (e) => {
     setAdults(Number(e.target.value)); 
@@ -22,17 +20,13 @@ export default function Guest({ toggle }) {
     setChild(Number(e.target.value)); 
   };
 
-  const roomChange = (e) => {
-    setRooms(Number(e.target.value)); 
-  };
-
   const confirmData = () => {
-    if(!adults || !children || !room){
+    if(!adults || !children){
       return
     }
     dispatch(setAdult(adults));       
-    dispatch(setChildren(children));  
-    dispatch(setRoom(room));      
+    dispatch(setChildren(children));
+    toggle()
   };
 
   return (
@@ -42,7 +36,7 @@ export default function Guest({ toggle }) {
           <X onClick={toggle} className="h-5 w-5 cursor-pointer" />
         </div>
         <div className="text-center font-semibold">GUESTS & ROOMS</div>
-        <div className="grid grid-cols-3 gap-10">
+        <div className="grid grid-cols-2 gap-10">
           <div className="text-sm text-center">
             <p>ADULT</p>
             <Box sx={{ minWidth: 120 }}>
@@ -73,27 +67,6 @@ export default function Guest({ toggle }) {
                   onChange={childrenChange}
                   inputProps={{
                     name: "children",
-                    id: "uncontrolled-native",
-                  }}
-                >
-                  {adult.map((item) => (
-                    <option key={item} value={item}>
-                      {item}
-                    </option>
-                  ))}
-                </NativeSelect>
-              </FormControl>
-            </Box>
-          </div>
-          <div className="text-sm text-center">
-            <p>ROOM</p>
-            <Box sx={{ minWidth: 120 }}>
-              <FormControl fullWidth>
-                <NativeSelect
-                  value={room}
-                  onChange={roomChange}
-                  inputProps={{
-                    name: "room",
                     id: "uncontrolled-native",
                   }}
                 >

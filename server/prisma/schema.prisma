@@ -32,4 +32,5 @@ model Booking {
   checkInDate DateTime
   checkOutDate DateTime
   createdAt   DateTime @default(now())
+  price       Int
 }
