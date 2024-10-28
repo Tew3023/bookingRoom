@@ -128,24 +128,24 @@ export default function Booking() {
               <div className="text-md my-5">
                 <div>
                   {singleroom && singleroom.length > 0 && (
-                    <div className="bg-blue-400 px-4 py-2 rounded-xl my-2">
-                      <p className="bg-blue-200 px-4 py-2 rounded-md  w-full space-x-5 uppercase">
+                    <div className=" px-4 py-2 rounded-xl my-2">
+                      <p className=" px-4 py-2 rounded-md  w-full space-x-5 uppercase">
                         <span>{singleroom.length}</span>
                         <span>Single Room</span>
                       </p>
                     </div>
                   )}
                   {doubleroom && doubleroom.length > 0 && ( 
-                    <div className="bg-blue-400 px-4 py-2 rounded-xl my-2">
-                      <p className="bg-blue-200 px-4 py-2 rounded-md  w-full space-x-5 uppercase">
+                    <div className=" px-4 py-2 rounded-xl my-2">
+                      <p className=" px-4 py-2 rounded-md  w-full space-x-5 uppercase">
                         <span>{doubleroom.length}</span>
                         <span>Double Room</span>
                       </p>
                     </div>
                   )}
                   {suitroom && suitroom.length > 0 && (
-                    <div className="bg-blue-400 px-4 py-2 rounded-xl my-2">
-                      <p className="bg-blue-200 px-4 py-2 rounded-md  w-full space-x-5 uppercase">
+                    <div className=" px-4 py-2 rounded-xl my-2">
+                      <p className=" px-4 py-2 rounded-md  w-full space-x-5 uppercase">
                         <span>{suitroom.length}</span>
                         <span>Suite Room</span>
                       </p>

@@ -28,7 +28,6 @@ export default function TotalPrice({ totalPrice, roomtypes }) {
         checkOutDate: data.checkout,
         totalPrice :Price
       });
-      console.log("Booking successful:", response.data);
       return response.data;
     } catch (error) {
       console.error("Error booking rooms:", error);
@@ -42,7 +41,7 @@ export default function TotalPrice({ totalPrice, roomtypes }) {
 
   return (
     <div className="my-2">
-      <Typography variant="h6">Total Price: ${Price}</Typography>
+      <Typography variant="h6">${Price}</Typography>
       <button
         onClick={booking}
         className="my-5 border border-blue-950 text-black w-full py-2 uppercase hover:bg-blue-950 transition-all hover:text-white rounded-md"
