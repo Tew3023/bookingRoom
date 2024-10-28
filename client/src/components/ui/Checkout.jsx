@@ -5,7 +5,13 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import dayjs from "dayjs";
+import { useEffect } from "react";
+
+import { useDispatch } from "react-redux";
+import { setChecksec } from "../../store/counterSlice";
+
 export default function Checkout() {
+  const dispatch = useDispatch();
   const [popup, setPopup] = useState(false);
   const [calendar, setCalendar] = useState(null);
 
@@ -16,6 +22,10 @@ export default function Checkout() {
   const formattedDate = calendar
     ? dayjs(calendar).format("MM/DD/YYYY")
     : "Select Date";
+
+  useEffect(() => {
+    dispatch(setChecksec(formattedDate));
+  }, [formattedDate]);
   return (
     <>
       {popup && (
@@ -34,9 +44,6 @@ export default function Checkout() {
                 </DemoItem>
               </DemoContainer>
             </LocalizationProvider>
-            <div className="flex justify-center mt-2">
-              <button className="text-center bg-black text-white">Confirm</button>
-            </div>
           </div>
         </div>
       )}
@@ -48,6 +55,7 @@ export default function Checkout() {
         <CalendarDays className="w-5 h-5" />
         <div className="flex flex-col text-start">
           <p className="text-sm ">Check - Out</p>
+          <span className="text-xs text-gray-500">{formattedDate}</span>
         </div>
       </button>
     </>

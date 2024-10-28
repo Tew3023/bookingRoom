@@ -27,10 +27,12 @@ model Room {
 model Booking {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   userId      String   @db.ObjectId 
-  roomId      String   @db.ObjectId 
-  guests      Int
-  checkInDate DateTime
-  checkOutDate DateTime
+  rooms       Json     
+  guests      Json     
+  checkInDate String
+  checkOutDate String
   createdAt   DateTime @default(now())
   price       Int
 }
+
+

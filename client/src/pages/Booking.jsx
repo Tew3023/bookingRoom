@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
-import { Card, CardContent, Typography } from "@mui/material";
+import Total from "../components/ui/Totalprice";
 
 export default function Booking() {
   const [roomCount, setRoomCount] = useState(1);
@@ -47,10 +47,6 @@ export default function Booking() {
   const totalPrice = roomTypes.reduce((total, roomType) => {
     return total + (roomPrices[roomType] || 0);
   }, 0);
-
-  useEffect(() => {
-    console.log(roomTypes);
-  }, [roomTypes]);
 
   return (
     <>
@@ -130,47 +126,33 @@ export default function Booking() {
                 )}
               </div>
               <div className="text-md my-5">
-                <Typography variant="h6">Conclusion:</Typography>
-                <div className="grid grid-cols-3 gap-5">
-                  <Card variant="outlined">
-                    <CardContent>
-                      <Typography variant="subtitle1" color="textSecondary">
-                        Single Rooms
-                      </Typography>
-                      <Typography variant="h5" color="primary">
-                        {singleroom.length}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                  <Card variant="outlined">
-                    <CardContent>
-                      <Typography variant="subtitle1" color="textSecondary">
-                        Double Rooms
-                      </Typography>
-                      <Typography variant="h5" color="primary">
-                        {doubleroom.length}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                  <Card variant="outlined">
-                    <CardContent>
-                      <Typography variant="subtitle1" color="textSecondary">
-                        Suite Rooms
-                      </Typography>
-                      <Typography variant="h5" color="primary">
-                        {suitroom.length}
-                      </Typography>
-                    </CardContent>
-                  </Card>
+                <div>
+                  {singleroom && singleroom.length > 0 && (
+                    <div className="bg-blue-400 px-4 py-2 rounded-xl my-2">
+                      <p className="bg-blue-200 px-4 py-2 rounded-md  w-full space-x-5 uppercase">
+                        <span>{singleroom.length}</span>
+                        <span>Single Room</span>
+                      </p>
+                    </div>
+                  )}
+                  {doubleroom && doubleroom.length > 0 && ( 
+                    <div className="bg-blue-400 px-4 py-2 rounded-xl my-2">
+                      <p className="bg-blue-200 px-4 py-2 rounded-md  w-full space-x-5 uppercase">
+                        <span>{doubleroom.length}</span>
+                        <span>Double Room</span>
+                      </p>
+                    </div>
+                  )}
+                  {suitroom && suitroom.length > 0 && (
+                    <div className="bg-blue-400 px-4 py-2 rounded-xl my-2">
+                      <p className="bg-blue-200 px-4 py-2 rounded-md  w-full space-x-5 uppercase">
+                        <span>{suitroom.length}</span>
+                        <span>Suite Room</span>
+                      </p>
+                    </div>
+                  )}
                 </div>
-                <div className="my-2">
-                  <Typography variant="h6">
-                    Total Price: ${totalPrice}
-                  </Typography>
-                  <button className="my-5 border border-blue-950 text-black w-full py-2 uppercase hover:bg-blue-950 transition-all hover:text-white">
-                    Confirm
-                  </button>
-                </div>
+                <Total roomtypes={roomTypes} totalPrice={totalPrice} />
               </div>
             </div>
           </div>

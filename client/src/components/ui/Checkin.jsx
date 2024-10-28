@@ -1,20 +1,31 @@
 import { CalendarDays } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import dayjs from "dayjs";
 
+import { useDispatch } from "react-redux";
+import { setCheckfirst } from "../../store/counterSlice";
+
 export default function Checkin() {
+  const dispatch = useDispatch();
+  const today = dayjs();
   const [popup, setPopup] = useState(false);
-  const [calendar, setCalendar] = useState(null);
+  const [calendar, setCalendar] = useState(today);
 
   const handlePopup = () => {
     setPopup(!popup);
   };
 
-  const formattedDate = calendar ? dayjs(calendar).format("MM/DD/YYYY") : "Select Date";
+  const formattedDate = calendar
+    ? dayjs(calendar).format("MM/DD/YYYY")
+    : "Select Date";
+
+  useEffect(() => {
+    dispatch(setCheckfirst(formattedDate));
+  }, [formattedDate, dispatch]);
 
   return (
     <>
@@ -23,7 +34,7 @@ export default function Checkin() {
           <div className="absolute top-12 bg-white shadow-lg p-2 rounded-md z-10">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={["DateCalendar"]}>
-                <DemoItem label="Check-out-date">
+                <DemoItem label="Check-in date">
                   <DateCalendar
                     value={calendar}
                     onChange={(newValue) => {
@@ -34,13 +45,13 @@ export default function Checkin() {
                 </DemoItem>
               </DemoContainer>
             </LocalizationProvider>
-            <div className="flex justify-center mt-2">
-              <button className="text-center bg-black text-white">Confirm</button>
-            </div>
           </div>
         </div>
       )}
-      <button onClick={handlePopup} className="w-full h-full p-2 flex gap-5 items-center">
+      <button
+        onClick={handlePopup}
+        className="w-full h-full p-2 flex gap-5 items-center"
+      >
         <CalendarDays className="w-5 h-5" />
         <div className="flex flex-col text-start">
           <p className="text-sm">Check - In</p>
