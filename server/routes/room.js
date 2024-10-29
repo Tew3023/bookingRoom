@@ -91,6 +91,35 @@ router.post("/booking", async (req, res) => {
 });
 
 
+//http://localhost:3001/room/update/:id
+router.put("/update/:id", async (req, res) => {
+  const { id } = req.params;
+  const { price, available } = req.body;
+
+  if (price === undefined || available === undefined) {
+    return res.status(400).json({ error: "Price and availability must be provided." });
+  }
+
+  try {
+    const result = await prisma.room.update({
+      where: {
+        id: id, 
+      },
+      data: {
+        price: price,
+        available: available,
+      },
+    });
+
+    return res.status(200).json({ message: "Room updated successfully", result });
+  } catch (error) {
+    console.error("Error updating room:", error);
+    return res.status(500).json({ error: "Failed to update room" });
+  }
+});
+
+
+
 
 
 module.exports = router;

@@ -19,6 +19,9 @@ export default function Login() {
   };
 
   const registeration = async () => {
+    if(!userData.email || !userData.password || !userData.confirmpassword){
+      return
+    }
     if (userData.password !== userData.confirmpassword) {
       setError('Passwords do not match');
       return;
@@ -30,10 +33,6 @@ export default function Login() {
         password: userData.password,
       });
 
-      if (res.status === 201) {
-        console.log('Account created successfully');
-        window.location.replace('/login')
-      }
     } catch (error) {
       console.error('Registration error:', error);
       setError('Failed to create an account');
@@ -41,9 +40,9 @@ export default function Login() {
   };
 
   return (
-    <div className="grid grid-cols-2 gap-10 h-screen">
+    <div className="grid grid-cols-2 h-screen">
       <div className="flex justify-center">
-        <div className="space-y-3 w-full md:px-16">
+        <div className="space-y-3 w-full md:p-28">
           <div className="text-2xl font-bold my-10 text-blue-900">
             CREATE AN ACCOUNT
           </div>

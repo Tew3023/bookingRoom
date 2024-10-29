@@ -15,8 +15,11 @@ export default function TotalPrice({ totalPrice, roomtypes }) {
       : 0;
   const Price = totalPrice * Difdate || totalPrice;
   const booking = async () => {
+    const cookiesData = await getCookiesData();
+    if (!cookiesData) {
+      return;
+    }
     try {
-      const cookiesData = await getCookiesData();
       const response = await axios.post("http://localhost:3001/room/booking", {
         userId: cookiesData.payload.id,
         roomTypes: roomtypes,
@@ -26,7 +29,7 @@ export default function TotalPrice({ totalPrice, roomtypes }) {
         },
         checkInDate: data.checkin,
         checkOutDate: data.checkout,
-        totalPrice :Price
+        totalPrice: Price,
       });
       return response.data;
     } catch (error) {
@@ -35,9 +38,9 @@ export default function TotalPrice({ totalPrice, roomtypes }) {
     }
   };
 
-  useEffect(()=>{
-    console.log(roomtypes)
-  },[roomtypes])
+  useEffect(() => {
+    console.log(roomtypes);
+  }, [roomtypes]);
 
   return (
     <div className="my-2">

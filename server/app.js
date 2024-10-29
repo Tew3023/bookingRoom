@@ -5,6 +5,7 @@ const cors = require("cors");
 const userRoute = require("./routes/user");
 const cookiesRoute = require("./routes/cookies")
 const roomRoute = require("./routes/room")
+const bookingRoute = require("./routes/booking")
 
 app.use(
   cors({
@@ -21,6 +22,8 @@ app.use("/user", userRoute);
 app.use("/cookies",cookiesRoute)
 // get room data
 app.use("/room",roomRoute)
+// get booking data
+app.use("/booking",bookingRoute)
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {

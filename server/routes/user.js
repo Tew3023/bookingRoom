@@ -21,7 +21,11 @@ router.post("/register", async (req, res) => {
         password: hashedPassword,
       },
     });
-    return res.status(201).json(newUser);
+    const redirectUrl = "/login"
+    return res.status(201).json({
+      newUser,
+      redirectUrl
+    });
   } catch (error) {
     console.error("Error creating user: ", error);
     return res.status(500).json({ error: "Failed to create user" });
@@ -29,37 +33,92 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-    try {
-      const { email, password } = req.body;
-  
-      const user = await prisma.user.findUnique({
-        where: { email },
-      });
-  
-      if (!user) {
-        return res.status(404).json({ error: "Email not found" });
-      }
-      
-      const isMatch = await bcrypt.compare(password, user.password);
-      if (!isMatch) {
-        return res.status(400).json({ error: "Incorrect password" });
-      }
-  
-      const secret = new TextEncoder().encode(process.env.JWT_SECRET);
-      const jwt = await new jose.SignJWT({ id: user.id, email: user.email, role:user.role }) 
-        .setProtectedHeader({ alg: "HS256" })
-        .setIssuedAt()
-        .setExpirationTime("1h")
-        .sign(secret);
-  
-      return res.status(200).json({
-        token: jwt,
-      });
-    } catch (error) {
-      console.error("Error during login: ", error);
-      return res.status(500).json({ error: "Failed to log in" });
+  try {
+    const { email, password } = req.body;
+
+    const user = await prisma.user.findUnique({
+      where: { email },
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: "Email not found" });
     }
-  });
-  
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ error: "Incorrect password" });
+    }
+
+    const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+    const jwt = await new jose.SignJWT({ id: user.id, email: user.email, role: user.role })
+      .setProtectedHeader({ alg: "HS256" })
+      .setIssuedAt()
+      .setExpirationTime("1h")
+      .sign(secret);
+    const redirectUrl = user.role === "admin" ? "/admin" : "/home";
+
+    return res.status(200).json({
+      token: jwt,
+      redirectUrl,
+      message: "Login successful",
+    });
+  } catch (error) {
+    console.error("Error during login: ", error);
+    return res.status(500).json({ error: "Failed to log in" });
+  }
+});
+
+
+router.get('/', async (req, res) => {
+  try {
+    const result = await prisma.user.findMany();
+    return res.status(200).json({ result });
+  } catch (err) {
+    console.error("Error fetching users: ", err);
+    return res.status(500).json({ error: "Failed to fetch users" });
+  }
+});
+
+router.delete('/delete/:id', async (req, res) => {
+  const { id } = req.params; 
+  try {
+    const result = await prisma.user.delete({
+      where: {
+        id: id,
+      },
+    });
+    return res.status(200).json({ message: "User deleted successfully", result });
+  } catch (err) {
+    console.error("Error deleting user: ", err);
+    return res.status(500).json({ error: "Failed to delete user" });
+  }
+});
+
+
+router.put('/edit/:id', async (req, res) => {
+  const { email, role } = req.body; 
+  const { id } = req.params; 
+
+  try {
+    const result = await prisma.user.update({
+      where: {
+        id: id, 
+      },
+      data: {
+        email: email, 
+        role: role,   
+      },
+    });
+    
+    return res.status(200).json({ message: "User updated successfully", result });
+  } catch (err) {
+    console.error("Error updating user: ", err);
+    return res.status(500).json({ error: "Failed to update user" });
+  }
+});
+
+
+
+
 
 module.exports = router;

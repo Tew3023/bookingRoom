@@ -21,14 +21,14 @@ export default function Comuser() {
         className="w-full h-full p-2 flex gap-5 items-center"
       >
         <User className="w-5 h-5" />
-        <div className="flex flex-col text-start">
-          <p className="text-sm">Guest</p>
+        <h2 className="flex flex-col text-start">
+          <p className="text-sm tracking-[.1em]">Guest</p>
           <p className="text-sm">
             <span>{data.adult} Adult </span>
             <span>, </span>
             <span>{data.children} Children</span>
           </p>
-        </div>
+        </h2>
       </button>
       {popup && <div></div>}
     </>
