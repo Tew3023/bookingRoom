@@ -55,7 +55,7 @@ router.post("/login", async (req, res) => {
       .setIssuedAt()
       .setExpirationTime("1h")
       .sign(secret);
-    const redirectUrl = user.role === "admin" ? "/admin" : "/home";
+    const redirectUrl = user.role === "admin" ? "/admin" : "/";
 
     return res.status(200).json({
       token: jwt,
