@@ -3,6 +3,7 @@ const router = express.Router();
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
+//http://localhost:3001/room
 router.get("/", async (req, res) => {
   try {
     const roomResult = await prisma.room.findMany();

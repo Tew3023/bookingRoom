@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import Bg2 from "../components/Bg2";
 import Comuser from "../components/ui/Comuser";
 import Checkin from "../components/ui/Checkin";

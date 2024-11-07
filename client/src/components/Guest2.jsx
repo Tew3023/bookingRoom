@@ -4,7 +4,7 @@ import NativeSelect from "@mui/material/NativeSelect";
 import { X } from "lucide-react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setAdult, setChildren, setRoom } from '../store/counterSlice'; 
+import { setAdult, setChildren } from '../store/counterSlice'; 
 
 export default function Guest2({ toggle }) {
   const dispatch = useDispatch();

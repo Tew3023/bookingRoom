@@ -5,35 +5,35 @@ import Modal from "../components/ui/Modal";
 const formatDate = (dateString) => {
   if (!dateString) return "";
   const date = new Date(dateString);
-  if (isNaN(date.getTime())) return ""; // Return empty string for invalid dates
-  return date.toISOString().split('T')[0]; // Returns YYYY-MM-DD format
+  if (isNaN(date.getTime())) return ""; 
+  return date.toISOString().split('T')[0]; 
 };
 
-const validateBooking = (formData) => {
-  const errors = {};
+// const validateBooking = (formData) => {
+//   const errors = {};
   
-  if (!formData.checkInDate) {
-    errors.checkInDate = "Check-in date is required";
-  }
-  if (!formData.checkOutDate) {
-    errors.checkOutDate = "Check-out date is required";
-  }
-  if (formData.checkInDate && formData.checkOutDate && 
-      new Date(formData.checkInDate) >= new Date(formData.checkOutDate)) {
-    errors.checkOutDate = "Check-out date must be after check-in date";
-  }
-  if (!formData.price || formData.price <= 0) {
-    errors.price = "Valid price is required";
-  }
-  if (formData.guests.adult < 1) {
-    errors.adult = "At least one adult is required";
-  }
-  if (formData.guests.children < 0) {
-    errors.children = "Number of children cannot be negative";
-  }
+//   if (!formData.checkInDate) {
+//     errors.checkInDate = "Check-in date is required";
+//   }
+//   if (!formData.checkOutDate) {
+//     errors.checkOutDate = "Check-out date is required";
+//   }
+//   if (formData.checkInDate && formData.checkOutDate && 
+//       new Date(formData.checkInDate) >= new Date(formData.checkOutDate)) {
+//     errors.checkOutDate = "Check-out date must be after check-in date";
+//   }
+//   if (!formData.price || formData.price <= 0) {
+//     errors.price = "Valid price is required";
+//   }
+//   if (formData.guests.adult < 1) {
+//     errors.adult = "At least one adult is required";
+//   }
+//   if (formData.guests.children < 0) {
+//     errors.children = "Number of children cannot be negative";
+//   }
 
-  return errors;
-};
+//   return errors;
+// };
 
 export default function BookingPage() {
   const [bookings, setBookings] = useState([]);

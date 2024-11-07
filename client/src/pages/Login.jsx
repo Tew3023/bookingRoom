@@ -28,10 +28,11 @@ export default function Login() {
     }
     
     try {
-      const res = await axios.post('http://localhost:3001/user/register', {
+      await axios.post('http://localhost:3001/user/register', {
         email: userData.email,
         password: userData.password,
       });
+
 
     } catch (error) {
       console.error('Registration error:', error);

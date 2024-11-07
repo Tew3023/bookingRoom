@@ -14,7 +14,7 @@ import BookingPage from './pages/BookingPage';
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Layout showNavFooter={true} />}>
+      <Route path="/" element={<Layout />}>
         <Route path='' element={<Home />} />
         <Route path='register' element={<Login />} />
         <Route path='login' element={<Register />} />

@@ -10,9 +10,13 @@ export default function Nav() {
     navigate("/login"); 
   };
 
+  const handdleScroll = () => {
+
+  }
+
   return (
-    <nav className="h-32 bg-white w-full border-b border-zinc-300 backdrop-blur-xl">
-      <div className="h-full w-full mt-2">
+    <nav onScroll={handdleScroll} className="h-32 bg-white w-full border-b border-zinc-300 backdrop-blur-xl">
+      <div  className="h-full w-full mt-2">
         {/* Brand Logo */}
         <Link to="/">
           <div className="flex justify-center items-center w-full">
