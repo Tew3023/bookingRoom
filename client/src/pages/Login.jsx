@@ -28,7 +28,7 @@ export default function Login() {
     }
     
     try {
-      await axios.post('http://localhost:3001/user/register', {
+      await axios.post(`${process.env.HOST}/user/register`, {
         email: userData.email,
         password: userData.password,
       });

@@ -9,7 +9,7 @@ export default function Rooms() {
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/room");
+        const response = await axios.get(`${process.env.HOST}/room`);
         if (response.status === 200) {
           setRooms(response.data);
         }
@@ -36,7 +36,7 @@ export default function Rooms() {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(`http://localhost:3001/room/update/${editRoom.id}`, updatedData);
+      const response = await axios.put(`${process.env.HOST}/room/update/${editRoom.id}`, updatedData);
       if (response.status === 200) {
         setRooms((prevRooms) =>
           prevRooms.map((room) => (room.id === editRoom.id ? { ...room, ...updatedData } : room))

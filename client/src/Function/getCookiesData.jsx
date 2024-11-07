@@ -8,7 +8,7 @@ export default async function getCookiesData() {
       throw new Error("No token found");
     }
 
-    const res = await axios.get('http://localhost:3001/cookies', {
+    const res = await axios.get(`${process.env.HOST}/cookies`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }

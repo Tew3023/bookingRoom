@@ -17,7 +17,7 @@ export default function Register() {
 
   const login = async () => {
     try {
-      const res = await axios.post("http://localhost:3001/user/login", {
+      const res = await axios.post(`${process.env.HOST}/user/login`, {
         email: userData.email,
         password: userData.password,
       });

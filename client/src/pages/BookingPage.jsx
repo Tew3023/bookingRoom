@@ -55,7 +55,7 @@ export default function BookingPage() {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.get("http://localhost:3001/booking");
+      const response = await axios.get(`${process.env.HOST}/booking`);
       setBookings(response.data.result);
     } catch (err) {
       setError("Failed to fetch bookings. Please try again later.");
@@ -117,7 +117,7 @@ export default function BookingPage() {
       };
 
       const response = await axios.put(
-        `http://localhost:3001/booking/update/${id}`, 
+        `${process.env.HOST}/booking/update/${id}`, 
         updateData
       );
       
@@ -143,7 +143,7 @@ export default function BookingPage() {
     }
 
     try {
-      const response = await axios.delete(`http://localhost:3001/booking/delete/${id}`);
+      const response = await axios.delete(`${process.env.HOST}/booking/delete/${id}`);
       if (response.status === 200) {
         setBookings((prev) => prev.filter((booking) => booking.id !== id));
       }
