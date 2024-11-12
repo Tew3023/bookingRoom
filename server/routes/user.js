@@ -68,7 +68,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-
+//localhost:3001/user
 router.get('/', async (req, res) => {
   try {
     const result = await prisma.user.findMany();

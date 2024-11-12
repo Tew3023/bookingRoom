@@ -10,6 +10,8 @@ import Layout from "./components/Layout";
 import Rooms from './pages/Rooms';
 import Users from './pages/Users';
 import BookingPage from './pages/BookingPage';
+import Enrow from './pages/Enrow/Enrow';
+import Apply from './pages/Enrow/Apply';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path='register' element={<Login />} />
         <Route path='login' element={<Register />} />
         <Route path='booking' element={<Booking />} />
+        <Route path='careers' element={<Enrow />} />
+        <Route path="/careers/apply/:jobname" element={<Apply />} />
       </Route>
       <Route path="/admin" element={<AdminLayout />}>
         <Route path="rooms" element={<Rooms />} />

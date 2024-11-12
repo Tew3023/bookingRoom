@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Asterisk } from "lucide-react";
 import axios from 'axios';
 
@@ -28,7 +28,7 @@ export default function Login() {
     }
     
     try {
-      await axios.post(`${process.env.HOST}/user/register`, {
+      await axios.post(`${process.env.REACT_APP_HOST}/user/register`, {
         email: userData.email,
         password: userData.password,
       });

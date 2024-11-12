@@ -55,7 +55,7 @@ export default function BookingPage() {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.get(`${process.env.HOST}/booking`);
+      const response = await axios.get(`${process.env.REACT_APP_HOST}/booking`);
       setBookings(response.data.result);
     } catch (err) {
       setError("Failed to fetch bookings. Please try again later.");
@@ -117,7 +117,7 @@ export default function BookingPage() {
       };
 
       const response = await axios.put(
-        `${process.env.HOST}/booking/update/${id}`, 
+        `${process.env.REACT_APP_HOST}/booking/update/${id}`, 
         updateData
       );
       
@@ -143,7 +143,7 @@ export default function BookingPage() {
     }
 
     try {
-      const response = await axios.delete(`${process.env.HOST}/booking/delete/${id}`);
+      const response = await axios.delete(`${process.env.REACT_APP_HOST}/booking/delete/${id}`);
       if (response.status === 200) {
         setBookings((prev) => prev.filter((booking) => booking.id !== id));
       }

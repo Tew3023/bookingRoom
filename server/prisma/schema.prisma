@@ -35,4 +35,36 @@ model Booking {
   price       Int
 }
 
+model Career {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  department   String
+  career       String
+  number       Int
+  available    Boolean  @default(true)
+  jobDescription String
+  salaryRange   String
+  skillsRequired String
+  location     String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  jobApplications JobApplication[] @relation("CareerJobApplications")
+}
+
+
+model JobApplication {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  careerId        String   @db.ObjectId
+  applicantName   String
+  email           String
+  resumeUrl       String
+  coverLetter     String
+  status          String   @default("Pending") 
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  career          Career   @relation("CareerJobApplications", fields: [careerId], references: [id])
+}
+
+
 

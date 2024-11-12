@@ -1,7 +1,6 @@
 import Bg from "../components/Bg";
 import { Link } from "react-router-dom";
 export default function Home() {
-
   return (
     <>
       <Bg />
@@ -20,10 +19,10 @@ export default function Home() {
             fishing village, now sustainably renewed and elevated with the
             tastes of the 21st century.
           </h2>
-          <Link to='/booking'>
-          <button className="bg-black text-white px-8 py-3 text-md uppercase my-3">
-            <h1>Book now</h1>
-          </button>
+          <Link to="/booking">
+            <button className="bg-black text-white px-8 py-3 text-md uppercase my-3">
+              <h1>Book now</h1>
+            </button>
           </Link>
         </section>
       </div>
@@ -31,7 +30,9 @@ export default function Home() {
         <div className="bg-custom-image h-screen bg-cover bg-center relative">
           <div className="absolute left-20 top-20 w-1/3 h-3/4 bg-white">
             <div className="py-20 px-14 space-y-5">
-              <h1 className="text-4xl">A NEW ERA, <span className="italic">same</span> STEADY PULSE</h1>
+              <h1 className="text-4xl">
+                A NEW ERA, <span className="italic">same</span> STEADY PULSE
+              </h1>
               <h2 className="text-lg text-black/75">
                 From its discovery by the first Polynesian settlers to the rise
                 of Kaʻūpūlehu, to its new life as a world-class resort, the
@@ -42,7 +43,7 @@ export default function Home() {
                 experience.
               </h2>
               <button className="bg-black px-10 py-3 text-white uppercase rounded-sm ">
-                <h1 >our heritage</h1>
+                <h1>our heritage</h1>
               </button>
             </div>
           </div>
@@ -51,7 +52,9 @@ export default function Home() {
       <section className="my-14 space-y-5 ">
         <div className="h-full mx-auto w-full max-w-screen-xl px-2.5 md:px-20">
           <div className="grid grid-cols-2 gap-10">
-            <h1 className="text-5xl font-light ">CAREERS <span className="italic">at</span>  KONA VILLAGE</h1>
+            <h1 className="text-5xl font-light ">
+              CAREERS <span className="italic">at</span> KONA VILLAGE
+            </h1>
             <div className="space-y-10">
               <h2 className="text-lg text-black/75 ">
                 Relationship Hospitality. It’s in the genes. Some just have it;
@@ -63,7 +66,11 @@ export default function Home() {
                 long-lasting, genuine relationships. Here, we do what we were
                 born to do. Here, we answer The Calling.
               </h2>
-              <button className="border border-zinc-600 text-md px-4 py-2 uppercase"><h1>apply now</h1></button>
+              <Link to="/careers" target="_blank" rel="noopener noreferrer">
+                <button className="border border-zinc-600 text-md px-4 py-2 uppercase my-10 hover:text-white hover:bg-black transition-all">
+                  <h1>Apply Now</h1>
+                </button>
+              </Link>
             </div>
           </div>
         </div>

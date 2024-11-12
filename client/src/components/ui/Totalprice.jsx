@@ -20,7 +20,7 @@ export default function TotalPrice({ totalPrice, roomtypes }) {
       return;
     }
     try {
-      const response = await axios.post(`${process.env.HOST}/room/booking`, {
+      const response = await axios.post(`${process.env.REACT_APP_HOST}/room/booking`, {
         userId: cookiesData.payload.id,
         roomTypes: roomtypes,
         guests: {

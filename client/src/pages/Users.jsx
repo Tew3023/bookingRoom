@@ -53,7 +53,7 @@ export default function Users() {
 
   const handleDelete = async (user) => {
     try {
-      const response = await axios.delete(`${process.env.HOST}/user/delete/${user.id}`);
+      const response = await axios.delete(`${process.env.REACT_APP_HOST}/user/delete/${user.id}`);
       if (response.status === 200) {
         setUsers((prevUsers) => prevUsers.filter((u) => u.id !== user.id));
       }
