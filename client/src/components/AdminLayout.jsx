@@ -22,6 +22,9 @@ export default function AdminLayout() {
           <Link to="/admin/bookings" className="block hover:bg-gray-700 px-3 py-2 rounded">
             Bookings
           </Link>
+          <Link to="/admin/jobapplication" className="block hover:bg-gray-700 px-3 py-2 rounded">
+            Jobapplication
+          </Link>
           <button onClick={lockout}  className="block hover:bg-gray-700 px-3 py-2 rounded w-full">
             Logout
           </button>

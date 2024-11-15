@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { X } from "lucide-react";
 
-export default function Resume({ career, email, careerId , coverLetter}) {
+export default function Resume({ career, email, careerId, coverLetter }) {
   const [file, setFile] = useState(null);
   const [popup, setPopup] = useState(false);
 
@@ -33,7 +33,6 @@ export default function Resume({ career, email, careerId , coverLetter}) {
     formData.append("careerId", careerId);
     formData.append("coverLetter", coverLetter);
 
-
     try {
       const response = await axios.post(
         "http://localhost:3001/upload",
@@ -58,7 +57,9 @@ export default function Resume({ career, email, careerId , coverLetter}) {
       {popup && (
         <div
           className={`fixed inset-0 bg-black/25 flex items-center justify-center z-50 
-                      transition-opacity duration-300 ${popup ? "opacity-100" : "opacity-0"}`}
+                      transition-opacity duration-300 ${
+                        popup ? "opacity-100" : "opacity-0"
+                      }`}
         >
           <div className="bg-white p-6 text-black absolute w-2/5 space-y-3 rounded-sm transition-transform transform duration-300 scale-100">
             <div className="flex justify-end">
@@ -70,10 +71,21 @@ export default function Resume({ career, email, careerId , coverLetter}) {
           </div>
         </div>
       )}
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload} className="px-6 py-2 bg-black text-white">
-        Upload My Resume
-      </button>
+      <div className="flex justify-between">
+        {/* <input type="file" onChange={handleFileChange} /> */}
+        <div>
+          <label for="file-upload" class="custom-file-upload">
+            Custom Upload
+          </label>
+          <input id="file-upload" type="file" onChange={handleFileChange} />
+        </div>
+        <button
+          onClick={handleUpload}
+          className="px-6 py-2 bg-black text-white rounded-md"
+        >
+          Upload My Resume
+        </button>
+      </div>
     </>
   );
 }

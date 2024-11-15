@@ -8,6 +8,7 @@ const roomRoute = require("./routes/room");
 const bookingRoute = require("./routes/booking");
 const careerRoute = require("./routes/career");
 const uploadRoute = require("./routes/upload");
+const jobApplication = require('./routes/jobapplication')
 
 app.use(
   cors({
@@ -30,6 +31,8 @@ app.use("/booking", bookingRoute);
 app.use("/careers", careerRoute);
 // upload
 app.use("/upload", uploadRoute);
+// get application data
+app.use("/job", jobApplication);
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {

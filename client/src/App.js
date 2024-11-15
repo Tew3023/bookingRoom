@@ -12,6 +12,7 @@ import Users from './pages/Users';
 import BookingPage from './pages/BookingPage';
 import Enrow from './pages/Enrow/Enrow';
 import Apply from './pages/Enrow/Apply';
+import Adminjob from './pages/Enrow/Adminjob';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="rooms" element={<Rooms />} />
         <Route path="users" element={<Users />} />
         <Route path="bookings" element={<BookingPage />} />
+        <Route path="jobapplication" element={<Adminjob />} />
       </Route>
     </Routes>
   );

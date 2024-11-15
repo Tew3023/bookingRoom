@@ -94,7 +94,7 @@ export default function Apply() {
           </div>
         </section>
         <section className="my-6">
-          <div className="flex justify-between h-auto py-5">
+          {/* <div className="flex justify-between h-auto py-5">
             {["Start your application", "Personal information", "Compliance"].map((text, index) => (
               <div key={index} className="mx-auto uppercase text-center">
                 <p className="text-gray-500 font-light">{text}</p>
@@ -105,9 +105,9 @@ export default function Apply() {
                 </div>
               </div>
             ))}
-          </div>
+          </div> */}
         </section>
-        <section className="my-2">
+        <section className="my-2 space-y-2">
           <label htmlFor="email" className="block text-gray-700 font-medium">
             Email
           </label>
@@ -117,7 +117,7 @@ export default function Apply() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
-            className="w-full py-2 px-4 border border-zinc-400 rounded-sm"
+            className="w-full py-2 px-4 border border-zinc-400 rounded-md"
           />
           {!isEmailValid && email && (
             <p className="text-red-500 text-sm">Please enter a valid email address.</p>
@@ -131,7 +131,7 @@ export default function Apply() {
             value={coverLetter}
             onChange={(e) => setCoverLetter(e.target.value)}
             placeholder="Enter your cover letter"
-            className="w-full py-2 px-4 border border-zinc-400 rounded-sm"
+            className="w-full py-2 px-4 border border-zinc-400 rounded-md"
           />
           <div className="mt-4">
             <Resume career={data.career} email={email} coverLetter={coverLetter} careerId={data.id} />
